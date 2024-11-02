@@ -33,7 +33,7 @@ Kisan Mitra is an AI-powered chatbot designed to assist users with their farming
 
 2. Now install the follwing packages using pip
    ```bash
-    pip install django channels uvicorn wsproto whitenoise
+    pip install django channels uvicorn wsproto whitenoise groq
 3. Once Project Downloaded or cloned then locate directory where manage.py file there
    ![image](https://github.com/user-attachments/assets/cbb6f12e-225b-4b91-a7ed-7339363003e4)
 
