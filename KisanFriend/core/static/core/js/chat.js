@@ -1,7 +1,7 @@
 
 console.log("hello");
 
-const ws = new WebSocket("ws://localhost:8001/ws/chat");
+const ws = new WebSocket("ws://localhost:8000/ws/chat");
 
 ws.onerror = function(e)  {
     console.error("WebSocket error:", e);
