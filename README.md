@@ -43,6 +43,6 @@ Kisan Mitra is an AI-powered chatbot designed to assist users with their farming
 5. Go to the browser and type the url http://127.0.0.1:8000/
 
 ## More Info 
-- contact at 8604470501
+- contact at 8604470501 9605891090
    
 
