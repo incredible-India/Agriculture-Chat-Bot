@@ -6,7 +6,7 @@ import os
 from groq import Groq
 
 client = Groq(
-    api_key="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"
+    api_key="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"
 )
 class ConnectTOBot(WebsocketConsumer):
     def connect(self):
