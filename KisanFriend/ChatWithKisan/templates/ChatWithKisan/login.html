@@ -1,0 +1,118 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block link %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'core/css/chat.css' %}">
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    main {
+        flex: 1;
+    }
+    .bg-orange {
+        background-color: #FFA500;
+    }
+    .features-badge {
+        border: 2px solid #28a745;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .badge {
+        font-size: 1.5rem;
+    }
+    .quotes-badge {
+        border: 2px solid #ffc107;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #fff3cd;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+{% endblock link %}
+
+{% block content %}
+<main>
+    <div class="container-fluid" style="background-color: orange; height: 60px;">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">
+                    <b>किसान  
+                        <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;">
+                        मित्र
+                    </b>
+                </span>
+
+                <!-- Right side content -->
+                <div class="d-flex ms-auto">
+                    {% if isLogedIn %}
+                        <span class="navbar-text me-3">Hello User</span>
+                        <a href="" class="btn btn-outline-light">Logout</a>
+                    {% else %}
+                        <a href="" class="btn btn-outline-light">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4 text-center">Login</h4>
+                        <form method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-warning">Login</button>
+                            </div>
+                        </form>
+                        <p class="mt-3 text-center">
+                            Don't have an account? <a href="{% url 'registration' %}" class="text-warning">Register</a>
+                        </p>
+
+                        
+                        {% if invalidCredentials %}
+                        <p class="mt-3 text-center">
+                           Invalid Credentials! Please try again.   
+                        </p>
+                        {% endif %}
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
+
+{% block footer %}
+<footer class="footer bg-orange text-white text-center py-4">
+    <div class="container">
+        <h2>किसान मित्र</h2>
+        <p>Empowering farmers with knowledge and resources.</p>
+        <p><i>Himanshu Kumar Sharma</i></p>
+        <p>XYZ College</p>
+        <p>&copy; 2024-25 Kisan-Frined. All rights reserved.</p>
+    </div>
+</footer>
+{% endblock footer %}
