@@ -37,10 +37,25 @@ Kisan Mitra is an AI-powered chatbot designed to assist users with their farming
 3. Once Project Downloaded or cloned then locate directory where manage.py file there
    ![image](https://github.com/user-attachments/assets/cbb6f12e-225b-4b91-a7ed-7339363003e4)
 
-4. Open the terminal in same directory (manage.py) and write follwing command
+4. Run The command in CMD where manage.py is there (cmd location) one by one
+    ```bash
+   python manage.py makemigrations
+ 
+     python manage.py migrate
+  
+     python manage.py createsuperuser
+**   Be careful to remember the username and password you create.
+You will need them to access the Django admin panel later.**
+
+
+6. Open the terminal in same directory (manage.py) and write follwing command
    ```bash
    python -m uvicorn KisanFriend.asgi:application --host 127.0.0.1 --port 8000
-5. Go to the browser and type the url http://127.0.0.1:8000/
+7. Go to the browser and type the url http://127.0.0.1:8000/
+
+8. To see Database
+   ```http://127.0.0.1:8000/admin``` in browser
+
 
 ## More Info 
 - contact at 8604470501 9605891090 2minutesCoding
