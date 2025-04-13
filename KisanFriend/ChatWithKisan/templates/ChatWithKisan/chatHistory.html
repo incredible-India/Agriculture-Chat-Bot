@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+
+{% block link %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static 'core/css/chat.css' %}">
+{% endblock link %}
+    
+{% block content %}
+
+
+<div class="container-fluid" style="background-color: orange; height: 60px;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <b>किसान  
+                    <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;">
+                    मित्र
+                </b>
+            </span>
+
+            <!-- Right side content -->
+            <div class="d-flex ms-auto">
+                {% if isLogedIn %}
+                    <span class="navbar-text me-3">Hello, {{user}}</span>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
+                    <a href="{% url 'index' %}" class="btn btn-outline-light">Chat Bot</a>
+
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+
+{% if chat_history %}
+{% for chat in chat_history %}
+<p><strong>You:</strong> {{ chat.message }}</p>
+<p><strong>Bot:</strong> {{ chat.response }}</p>
+<p>{{chat.timestamp}}</p>
+<hr>
+{% endfor %} 
+{% else %}
+<p>You Have no chat History ...</p>
+{% endif %}
+    
+
+
+{% endblock content %}
+
+{% block footer %}
+<footer class="footer bg-orange text-white text-center py-4">
+    <div class="container">
+        <h2>किसान मित्र</h2>
+        <p>Empowering farmers with knowledge and resources.</p>
+        <p><i>Harsh Patil</i></p>
+        <p>KJ Somaiya College</p>
+        <p>&copy; 2024 Kisan-Frined. All rights reserved.</p>
+    </div>
+</footer>
+
+<style>
+    .bg-orange {
+        background-color: #FFA500; /* Orange color */
+    }
+    .features-badge {
+        border: 2px solid #28a745; /* Bootstrap success color */
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #f8f9fa; /* Light background */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .badge {
+        font-size: 1.5rem; /* Adjust font size for the badge */
+    }
+    .quotes-badge {
+        border: 2px solid #ffc107; /* Bootstrap warning color */
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #fff3cd; /* Light yellow background */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+
+
+{% endblock footer %}

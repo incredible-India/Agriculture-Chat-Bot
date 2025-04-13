@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
 ]
-
+SESSION_COOKIE_DOMAIN = '*'
 ROOT_URLCONF = 'KisanFriend.urls'
 
 TEMPLATES = [

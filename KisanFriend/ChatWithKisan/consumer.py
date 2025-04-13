@@ -1,8 +1,7 @@
 from channels.generic.websocket import WebsocketConsumer
 import json
-
 import os
-
+import ChatWithKisan.savingChatInDB as savingChatInDB
 from groq import Groq
 
 client = Groq(
@@ -29,7 +28,20 @@ class ConnectTOBot(WebsocketConsumer):
     model="llama3-8b-8192",
         )
         self.send(json.dumps({'message':f" {chat_completion.choices[0].message.content}"}))
-        
+        print("usercheck")
+        try:
+            isUserLogedIn= savingChatInDB.CheckingForTheUserLogin()
+            print("usercheck try")
+            if isUserLogedIn:
+                print("usercheck login")
+                QuestionText = text_data
+                AiResponseText = chat_completion.choices[0].message.content
+                savingChatInDB.SaveChatHistoryInDBSaved(QuestionText, AiResponseText)
+            else:
+                print("no logged")
+        except Exception as e:
+            print("Error in checking user login status", e)
+            isUserLogedIn=False
 
 
         return super().receive(text_data, bytes_data)
@@ -37,10 +49,6 @@ class ConnectTOBot(WebsocketConsumer):
     def disconnect(self, code):
         print("Client Disconnected")
         self.disconnect(code)
-
-
-
-
 
 
 

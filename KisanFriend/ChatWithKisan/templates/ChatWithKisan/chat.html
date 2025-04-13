@@ -25,6 +25,7 @@
             <div class="d-flex ms-auto">
                 {% if isLogedIn %}
                     <span class="navbar-text me-3">Hello, {{user}}</span>
+                    <a href="{% url 'chatHistory' %}" class="btn btn-outline-danger mx-2">Chat History</a>
                     <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
                 {% else %}
                     <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
