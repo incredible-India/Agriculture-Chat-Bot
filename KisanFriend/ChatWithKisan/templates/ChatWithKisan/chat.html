@@ -14,14 +14,13 @@
 <div class="container-fluid" style="background-color: orange; height: 60px;">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">
+          
                 <b>किसान  
-                    <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;">
-                    मित्र
+                    <a href="/"> <span class="navbar-brand mb-0 h1"> <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;"></a>मित्र
                 </b>
             </span>
 
-            <!-- Right side content -->
+           
             <div class="d-flex ms-auto">
                 {% if isLogedIn %}
                     <span class="navbar-text me-3">Hello, {{user}}</span>
@@ -37,13 +36,22 @@
 
 
 <div class="chat-container mt-5">
-    <h3 class="text-center">Ask To <span style="color: orange;">Kisan</span> <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;"></h3>
+    <h3 class="text-center">Ask To <span style="color: orange;">Kisan</span> 
+        <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;">
+    </h3>
     <div class="chat-box">
         <div class="messages" id="messages"></div>
         <textarea id="user-input" placeholder="chat with Kisan.." rows="3"></textarea>
-        <button id="send-button">Send</button>
+
+       <div class="controls">
+    <button id="mic-button" title="Start Voice Input">🎤</button>
+    <button id="speaker-button" title="Play Audio">🔊</button>
+    <button id="send-button">Send</button>
+</div>
+
     </div>
 </div>
+
 
 
 <div class="container mt-5">
@@ -51,78 +59,7 @@
 </div>
 
 
-<script>
-    
-console.log("hello");
 
-const ws = new WebSocket("ws://localhost:8000/ws/chat");
-
-ws.onerror = function(e)  {
-    console.error("WebSocket error:", e);
-};
-
-ws.onopen = function(e)  {
-    console.log(e, "we are connected with server");
-};
-
-ws.onmessage = (e) => {
-    const messageData = JSON.parse(e.data);
-
-            const botMessage = document.createElement('div');
-            botMessage.classList.add('message', 'bot-message');
-
-            botMessage.innerHTML =` <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;">`
-
-            // Add bot logo
-            const botLogo = document.createElement('i');
-            botLogo.class = "fa-brands fa-rocketchat"; // Replace with your bot logo path
-            botMessage.appendChild(botLogo);
-
-            // Add bot reply text
-            botMessage.appendChild(document.createTextNode(`${messageData.message}`));
-            document.getElementById('messages').appendChild(botMessage);
-};
-
-ws.onclose = (e) => {
-    console.log("Connection closed:", e);
-};
-
-function sendMessage(message) {
-    console.log(message)
-    ws.send(message);
-}
-
-
-document.getElementById('send-button').addEventListener('click', function() {
-    const userInput = document.getElementById('user-input');
-    const messageText = userInput.value;
-
-    if (messageText) {
-        // Display user message
-        const userMessage = document.createElement('div');
-        userMessage.classList.add('message', 'user-message');
-        userMessage.textContent = messageText;
-        document.getElementById('messages').appendChild(userMessage);
-        sendMessage(messageText)
-        userInput.value = '';
-
-        // Simulate bot reply
-        // setTimeout(() => {
-        //     const botMessage = document.createElement('div');
-        //     botMessage.classList.add('message', 'bot-message');
-
-        //     // Add bot logo
-        //     const botLogo = document.createElement('i');
-        //     botLogo.class = "fa-brands fa-rocketchat"; // Replace with your bot logo path
-        //     botMessage.appendChild(botLogo);
-
-        //     // Add bot reply text
-        //     botMessage.appendChild(document.createTextNode("Hello! How can I assist you today?"));
-        //     document.getElementById('messages').appendChild(botMessage);
-        // }, 1000);
-    }
-});
-</script>
 
 <script src="{% static 'core/js/chat.js' %}"></script>
 

@@ -122,3 +122,10 @@ def chatHistory(request):
                 "isLogedIn": False,
                 "invalidCredentials": True
             })
+
+def weather(request):
+    return render(request, "ChatWithKisan/weather.html")
+
+
+def scheme(request):
+    return render(request, "ChatWithKisan/govScheme.html")

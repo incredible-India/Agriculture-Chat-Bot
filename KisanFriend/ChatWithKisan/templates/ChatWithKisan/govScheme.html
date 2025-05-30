@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farmer Schemes - India</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff9e6;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: orange;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .navbar-title {
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
+    .section-title {
+      text-align: center;
+      color: orange;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 16px;
+    }
+    .card-body h3 {
+      margin-top: 0;
+      color: #e65c00;
+      font-size: 1.2rem;
+    }
+    .card-body p {
+      color: #333;
+      font-size: 0.95rem;
+    }
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #666;
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+   <b>किसान  
+                    <a href="/"> <span class="navbar-brand mb-0 h1"> <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;"></a>मित्र
+                </b>
+    <div class="navbar-title">Farmer Govt. Schemes</div>
+    <div style="width: 50px;"></div>
+  </nav>
+
+  <div class="container">
+    <div class="section-title">Schemes for Indian Farmers</div>
+    <div class="card-grid">
+      <div class="card">
+        <img src="{% static 'core/images/s6.jpg' %}" alt="PM-KISAN">
+        <div class="card-body">
+          <h3>PM-KISAN</h3>
+          <p>Provides ₹6,000 per year in 3 equal installments to all landholding farmers for income support.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'core/images/s5.jpeg' %}" alt="PMFBY">
+        <div class="card-body">
+          <h3>Pradhan Mantri Fasal Bima Yojana</h3>
+          <p>Affordable crop insurance to protect farmers against crop loss due to natural calamities and pests.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'core/images/s4.png' %}" alt="Soil Health Card">
+        <div class="card-body">
+          <h3>Soil Health Card Scheme</h3>
+          <p>Promotes balanced use of fertilizers based on soil testing for better productivity and sustainability.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'core/images/s3.webp' %}" alt="eNAM">
+        <div class="card-body">
+          <h3>e-NAM (National Agriculture Market)</h3>
+          <p>An online trading platform to connect mandis across India, helping farmers get better prices.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'core/images/s2.webp' %}" alt="Kisan Credit Card">
+        <div class="card-body">
+          <h3>Kisan Credit Card (KCC)</h3>
+          <p>Ensures timely credit to farmers for agricultural needs, including seeds, fertilizers, and harvesting.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'core/images/s1.jpg' %}" alt="AgriStack">
+        <div class="card-body">
+          <h3>AgriStack (Digital Agri Mission)</h3>
+          <p>Digital agriculture ecosystem aiming to personalize advisory and financial services to farmers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p><strong>Note:</strong> This data is manually curated for awareness. In the future, we aim to integrate this page with official government APIs and AI services for live scheme updates and real-time eligibility checking.</p>
+    </div>
+  </div>
+</body>
+</html>

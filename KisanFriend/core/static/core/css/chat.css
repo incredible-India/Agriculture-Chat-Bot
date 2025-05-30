@@ -1,5 +1,5 @@
 .chat-container {
-    max-width: 600px; /* Increased width */
+    max-width: 1000px; /* Increased width */
     margin: auto;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -12,64 +12,166 @@
     flex-direction: column;
     height: 500px;
     background-color: #f9f9f9;
+    gap: 10px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .messages {
     flex: 1;
-    padding: 10px;
+    padding: 15px;
     overflow-y: auto;
-    border-bottom: 1px solid #ccc;
+    max-height: 350px;
+    background-color: #fff9e6;
+    border-radius: 10px;
+    border: 1px solid #FFA500;
+    box-shadow: inset 0 0 8px rgba(255,165,0,0.1);
+    position: relative;
 }
 
-.message {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    max-width: 80%;
+/* Clearfix for floated messages */
+.messages::after {
+    content: "";
+    display: block;
     clear: both;
 }
 
+/* Individual message bubbles */
+.message {
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    border-radius: 18px;
+    max-width: 75%;
+    font-size: 1rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    clear: both;
+}
+
+/* User message styling - aligned right */
 .user-message {
-    background-color: #e1f5fe; /* Light blue for user */
+    background-color: #ffcc80;
+    color: #4a2700;
+    float: right;
+    text-align: right;
+    border-bottom-right-radius: 4px;
+}
+
+/* Bot message styling - aligned left */
+.bot-message {
+    background-color: #ffe0b2;
+    color: #663c00;
     float: left;
     text-align: left;
-}
-
-.bot-message {
-    background-color: #FFA500; /* Orange for bot */
-    color: white;
+    border-bottom-left-radius: 4px;
     display: flex;
     align-items: center;
-    float: right;
-    text-align: left;
+    gap: 8px;
 }
 
-.bot-message img {
-    margin-right: 10px;
-    width: 30px; /* Logo size */
-    height: auto;
+/* Bot logo icon inside bot message */
+.bot-message i {
+    font-size: 1.3rem;
+    color: #ff8c00;
 }
 
+/* Scrollbar for messages */
+.messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background-color: #ffb84d;
+    border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #fff9e6;
+}
+
+/* Textarea styling */
 #user-input {
-    border: none;
-    padding: 10px;
-    resize: none; /* Disable resizing */
-    flex: 0 0 auto;
-    margin: 10px; /* Add some margin */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: calc(100% - 22px); /* Full width with padding adjustment */
+    resize: none;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1.5px solid #FFA500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: border-color 0.3s ease;
+    min-height: 60px;
+    outline-offset: 2px;
+    width: calc(100% - 30px);
+    margin: 0 15px;
 }
 
-#send-button {
-    padding: 10px;
-    background-color: orange;
-    color: white;
+#user-input:focus {
+    border-color: #ff6f00;
+    box-shadow: 0 0 5px #ff6f00;
+}
+
+/* Button container for mic, speaker, send button */
+.controls {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 15px 10px 15px;
+}
+
+/* General button style */
+.controls button {
+    background-color: #FFA500;
     border: none;
+    color: white;
+    padding: 10px 16px;
+    font-size: 1.25rem;
+    border-radius: 50%;
     cursor: pointer;
-    margin: 10px; /* Add margin to button */
+    box-shadow: 0 2px 6px rgba(255, 165, 0, 0.6);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls button:hover {
+    background-color: #ff8c00;
+    transform: scale(1.1);
+}
+
+.controls button:active {
+    transform: scale(0.95);
+}
+
+/* Send button rectangular style */
+#send-button {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #ff6f00;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
 }
 
 #send-button:hover {
-    background-color: #0056b3;
+    background-color: #e65c00;
+}
+
+#send-button:active {
+    background-color: #cc5200;
+}
+
+/* Mic and Speaker icons inside buttons */
+#mic-button, #speaker-button {
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
 }

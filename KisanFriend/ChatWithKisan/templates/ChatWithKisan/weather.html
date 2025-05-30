@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  {% load static %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Now</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff9e6;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: orange;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .navbar-title {
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .title {
+      text-align: center;
+      color: orange;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .search-bar input {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1.5px solid orange;
+      width: 60%;
+    }
+    .search-bar button {
+      background-color: orange;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .search-bar button:hover {
+      background-color: #e65c00;
+    }
+    .weather-result {
+      text-align: center;
+    }
+    .weather-result img {
+      width: 64px;
+      height: 64px;
+    }
+    table {
+      margin: 1rem auto;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td, th {
+      border: 1px solid #FFA500;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #ffe0b2;
+    }
+    .error {
+      text-align: center;
+      color: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+      <b>किसान  
+                    <a href="/"> <span class="navbar-brand mb-0 h1"> <img src="{% static 'core/images/sprout.png' %}" alt="" style="width: 30px;"></a>मित्र
+                </b>
+    <div class="navbar-title">Weather Info</div>
+    <div style="width: 50px;"></div> <!-- Filler for layout symmetry -->
+  </nav>
+
+  <div class="container">
+    <div class="title">Current Weather</div>
+    <div class="search-bar">
+      <input type="text" id="city" placeholder="Enter city name...">
+      <button onclick="getWeather()">Search</button>
+    </div>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const apiKey = 'd04b396f9cbf192128f6d1bad3b8296b';
+
+    async function getWeather() {
+      const city = document.getElementById('city').value.trim();
+      const output = document.getElementById('output');
+      output.innerHTML = '';
+      if (!city) {
+        output.innerHTML = '<p class="error">Please enter a city name.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}/current`);
+        const data = await response.json();
+
+        if (data.error) {
+          output.innerHTML = `<p class="error">${data.error.info}</p>`;
+          return;
+        }
+
+        const current = data.current;
+        const location = data.location;
+
+        output.innerHTML = `
+          <div class="weather-result">
+            <h3>${location.name}, ${location.country}</h3>
+            <img src="${current.weather_icons[0]}" alt="${current.weather_descriptions[0]}" />
+            <p><strong>${current.weather_descriptions[0]}</strong></p>
+            <table>
+              <tr><th>Temperature</th><td>${current.temperature} °C</td></tr>
+              <tr><th>Feels Like</th><td>${current.feelslike} °C</td></tr>
+              <tr><th>Humidity</th><td>${current.humidity}%</td></tr>
+              <tr><th>Wind</th><td>${current.wind_speed} km/h (${current.wind_dir})</td></tr>
+              <tr><th>Pressure</th><td>${current.pressure} mb</td></tr>
+              <tr><th>UV Index</th><td>${current.uv_index}</td></tr>
+              <tr><th>Visibility</th><td>${current.visibility} km</td></tr>
+              <tr><th>Cloud Cover</th><td>${current.cloudcover}%</td></tr>
+              <tr><th>Local Time</th><td>${location.localtime}</td></tr>
+            </table>
+          </div>
+        `;
+      } catch (error) {
+        output.innerHTML = `<p class="error">Error fetching data. Please try again later.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

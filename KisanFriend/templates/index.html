@@ -76,6 +76,36 @@
         </div>
     </div>
 </div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col sm-6">
+            <img src="{% static 'core/images/cloud.svg' %}" alt="" style="width: 300px; height: 300px;">
+        </div>
+        <div class="col sm-6 mt-5">
+            <div class="quotes-badge text-center my-4">
+                <h2 class="badge bg-warning text-dark">Weather information</h2>
+                <p class="mt-3">Track Live Weather information</p>
+                <a href="{% url 'weather' %}" class="btn btn-warning">Weather</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col sm-6">
+            <img src="{% static 'core/images/scheme.jpg' %}" alt="" style="width: 300px; height: 300px;">
+        </div>
+        <div class="col sm-6 mt-5">
+            <div class="quotes-badge text-center my-4">
+                <h2 class="badge bg-warning text-dark">Indian Government Schemes</h2>
+                <p class="mt-3">Get Latest Indian Government Schemes</p>
+                <a href="{% url 'scheme' %}" class="btn btn-warning">Check  Schemes</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 
 
